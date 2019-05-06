@@ -1,0 +1,6 @@
+[run]
+branch = True
+source = openstack_schedules
+
+[report]
+ignore_errors = True
