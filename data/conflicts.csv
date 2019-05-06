@@ -1,2 +1,66 @@
 TRACK1,TRACK2
-nova,placement
+Airship,OpenStack Helm
+API-SIG,Nova
+API-SIG,Placement
+API-SIG,Cyborg
+API-SIG,TripleO
+API-SIG,Ironic
+Auto-scaling SIG,Heat
+Auto-scaling SIG,Monasca
+Auto-scaling SIG,Self-healing SIG
+Cinder,Manila
+Cyborg,Nova
+Cyborg,Neutron
+Docs I18n,First Contact SIG
+Edge Computing Group,StarlingX
+Edge Computing Group,Nova
+Edge Computing Group,Cinder
+Edge Computing Group,Glance
+Edge Computing Group,Neutron
+Edge Computing Group,Ironic
+Edge Computing Group,Keystone
+First Contact SIG,Release Management
+First Contact SIG,Swift
+First Contact SIG,Requirements
+First Contact SIG,Nova
+First Contact SIG,QA
+First Contact SIG,Keystone
+Heat,Self-healing SIG
+Heat,Auto-scaling SIG
+Heat,TC
+Horizon,Cinder
+Horizon,Vitrage
+LOCI,OpenStack Helm
+LOCI,Airship
+Manila,Cinder
+Manila,K8s SIG
+Monasca,Self-healing SIG
+Monasca,Vitrage
+OpenStack Ansible,Cinder
+OpenStack Ansible,Glance
+OpenStack Ansible,Heat
+OpenStack Ansible,Horizon
+OpenStack Ansible,Ironic
+OpenStack Ansible,Keystone
+OpenStack Ansible,Manila
+OpenStack Ansible,Monasca
+OpenStack Ansible,Neutron
+OpenStack Ansible,Nova
+OpenStack Ansible,Octavia
+OpenStack Ansible,Oslo
+OpenStack Ansible,Placement
+OpenStack Ansible,Swift
+OpenStack Ansible,Vitrage
+OpenStack QA,Nova
+OpenStack QA,First Contact SIG
+OpenStack QA,TC
+Oslo,Keystone
+Placement,Nova
+Release Management,TC
+Requirements,Neutron
+Requirements,Horizon
+Self-healing SIG,Vitrage
+Self-healing SIG,Heat
+Self-healing SIG,Fenix
+TripleO,OpenStack Ansible
+Vitrage,Self-healing SIG

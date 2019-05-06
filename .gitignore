@@ -9,3 +9,4 @@ timings/
 output/
 .dir-exists
 scip.set
+schedule-cplex.lp

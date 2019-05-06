@@ -1,0 +1,61 @@
+TRACK,MIN_LENGTH,MAX_LENGTH,CONFLICTS
+Rust-VMM,1,4,
+Airship,3,5,OpenStack Helm
+API-SIG,1,2,"Nova, Placement, Cyborg, TripleO, Ironic"
+Auto-scaling SIG,1,1,"Heat, Senlin, Magnum, Monasca, Self-healing SIG, Public Cloud WG"
+Barbican,2,5,
+Charms,3,5,
+Cinder,4,6,Manila
+Cyborg,3,5,"Nova, Neutron"
+Docs/I18n,2,2,First Contact SIG
+Edge Computing Group,1,1,"StarlingX, Nova, Cinder, Glance, Neutron, Ironic, Keystone"
+Extended Maintenance SIG,1,1,
+First Contact SIG,1,2,"Release Management, Swift, Requirements, Nova, QA, Keystone"
+Glance,4,6,
+Heat,1,2,"Self-healing SIG, Auto-scaling SIG, TC"
+Horizon,1,2,"Cinder, Vitrage, Ops Meetup"
+Infrastructure,4,4,
+Interop WG/RefStack,1,1,Tempest
+Ironic,3,5,
+K8s SIG,1,2,"Magnum, Zun"
+Kata Containers,3,4,
+Keystone,3,5,
+LOCI,1,1,"OpenStack Helm, Airship"
+Manila,3,4,"Cinder, K8s SIG"
+Monasca,3,4,"Self-healing SIG, Vitrage"
+Neutron,4,6,
+Nova,6,6,
+Octavia,5,6,
+OpenStack Ansible,4,6,"Cinder, Glance, Heat, Horizon, Ironic, Keystone, Manila, Monasca, Neutron, Nova, Octavia, Oslo, Placement, Swift, Vitrage"
+OpenStack QA,2,4,"Nova, First Contact SIG, TC"
+OpenStackClient,1,1,OpenStack SDK
+Oslo,1,2,Keystone
+Placement,2,4,Nova
+Release Management,1,2,TC
+Requirements,1,2,"Neutron, Horizon, Sahara"
+Scientific SIG,1,2,
+Security SIG,1,1,
+Self-healing SIG,1,1,"Masakari, Vitrage, Congress, Senlin, Heat, Doctor, Fenix"
+StarlingX,2,3,
+Swift,5,6,
+Tacker,2,4,
+TripleO,6,6,"OpenStack Ansible, Kolla"
+Vitrage,2,4,Self-healing SIG
+OpenStack Helm,4,6,
+Searchlight,1,2,
+Upgrade SIG,1,1,
+Masakari,,,
+Senlin,,,
+Sahara,,,
+TC,2,2,
+QA,2,2,
+Congress,,,
+Doctor,,,
+Fenix,1,2,
+OpenStack SDK,,,
+Kolla,,,
+Zun,,,
+Magnum,,,
+Public Cloud WG,,,
+Tempest,,,
+Ops Meetup,,,
