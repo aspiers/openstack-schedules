@@ -1,0 +1,11 @@
+report.txt
+partial.txt
+debug.txt
+solutions/
+reports/
+scip
+Cbc-2.*
+timings/
+output/
+.dir-exists
+scip.set
