@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 
 import csv
 import sys
@@ -14,10 +14,10 @@ def extract_track_data(csv_path):
                                    (required_field, csv_path)))
 
         for row in csvreader:
-            track = row['TRACK'].strip().replace('/', ' ')
+            track_name = row['TRACK'].strip().replace('/', ' ')
             conflicts = re.split(',\s*', row['CONFLICTS'].strip())
             conflicts = list(filter(None, conflicts))
-            tracks[track] = {
+            tracks[track_name] = {
                 'min': num_field(row['MIN_LENGTH']),
                 'max': num_field(row['MAX_LENGTH']),
                 'conflicts': conflicts
