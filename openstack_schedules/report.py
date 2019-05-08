@@ -5,6 +5,7 @@ import sys
 from textwrap import dedent
 
 from openstack_schedules.solution import Solution
+from openstack_schedules.reporter import Reporter
 from openstack_schedules.utils import abort
 
 
@@ -23,7 +24,8 @@ def main():
         else:
             abort("Unknown solver type '%s'\n" % solver)
 
-    solution.report()
+    reporter = Reporter(solution)
+    reporter.report()
 
     if timings_path:
         with open(timings_path) as timings:

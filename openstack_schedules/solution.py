@@ -65,35 +65,3 @@ class Solution(object):
                 track2_name = self.cbc_name_to_human(track2_name)
                 self.overlap(track1_name, track2_name, int(overlap))
                 continue
-
-    def report(self):
-        print("Report for solver: %s" % self.solver)
-
-        self.report_summary()
-
-    def slot_pic(self, track, slot):
-        if slot < track.start or slot > track.end:
-            return ' '
-        elif slot == track.start:
-            return '<'
-        elif slot == track.end:
-            return '>'
-        else:
-            return '-'
-
-    def pic(self, track):
-        return "".join([
-            #self.slot_pic(track, i)
-            'X' if slot >= track.start and slot <= track.end
-            else ' '
-            for slot in range(1, 7)])
-
-    def report_summary(self):
-        for track_name in sorted(self.tracks.keys()):
-            track = self.tracks[track_name]
-            print("%-25s  %d %s  length %d  |%s|" %
-                  (track_name,
-                   track.start,
-                   "to %d" % track.end if track.end > track.start else "    ",
-                   track.length(),
-                   self.pic(track)))
