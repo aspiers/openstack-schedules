@@ -177,22 +177,14 @@ subject to track_ends_on_after_slot_constraint{track in TRACKS, slot in SLOTS}:
 # Take boolean AND of !track_starts_after_slot and
 # !track_ends_before_slot to set slot_in_track, using trick from:
 #
-# https://cs.stackexchange.com/questions/12102/express-boolean-logic-operations-in-zero-one-integer-linear-programming-ilp
+# https://cs.stackexchange.com/a/43884/89976
 #
-# If either track_starts_after_slot / track_ends_before_slot are 1,
-# then slot_in_track must be 0.
-subject to slot_in_track_constraint_1{track in TRACKS, slot in SLOTS}:
-    slot_in_track[slot, track] <= (1 - track_starts_after_slot[track, slot]);
-
-subject to slot_in_track_constraint_2{track in TRACKS, slot in SLOTS}:
-    slot_in_track[slot, track] <= (1 - track_ends_before_slot[track, slot]);
-
-# If track_starts_after_slot and track_ends_before_slot are both 0,
-# then slot_in_track must be 1.
-subject to slot_in_track_constraint_3{track in TRACKS, slot in SLOTS}:
-    slot_in_track[slot, track] >=
-        1 - track_starts_after_slot[track, slot]
-          - track_ends_before_slot[track, slot];
+subject to slot_in_track_constraint{track in TRACKS, slot in SLOTS}:
+    0 <=
+        (1 - track_starts_after_slot[track, slot]) +
+        (1 - track_ends_before_slot[track, slot]) +
+        - 2 * slot_in_track[slot, track]
+        <= 1;
 
 solve;
 
