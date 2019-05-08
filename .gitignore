@@ -67,6 +67,7 @@ solutions/
 reports/
 scip
 Cbc-2.*
+Cbc-releases-2.*
 timings/
 output/
 .dir-exists
