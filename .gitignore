@@ -65,11 +65,8 @@ partial.txt
 debug.txt
 solutions/
 reports/
-scip
-Cbc-2.*
-Cbc-releases-2.*
+solvers/
 timings/
 output/
 .dir-exists
-scip.set
 schedule-cplex.lp

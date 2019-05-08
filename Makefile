@@ -53,13 +53,15 @@ SCIP_REPORT = $(REPORTS_DIR)/scip.txt
 CBC_REPORT = $(REPORTS_DIR)/cbc.txt
 REPORTS = $(GLPSOL_REPORT) $(SCIP_REPORT) $(CBC_REPORT)
 
-# Solver arguments
+# Solver execution
+SOLVERS_DIR = solvers
 GLPSOL_INPUTS = --math $(GMPL) # --data $(GMPL_...)
 GLPSOL_SOLVE_OPTIONS = --tmlim $(SOLVER_TIMEOUT)
-SCIP = ./scip
-CBC = ./Cbc-2.10-linux-x86_64-gcc4.8/bin/cbc
-CBC_LIBRARY_PATH = ./Cbc-2.10-linux-x86_64-gcc4.8/lib
-#CBC = ./Cbc-2.9.8/build/Cbc/src/cbc
+SCIP = $(SOLVERS_DIR)/scip
+SCIP_SET = $(SOLVERS_DIR)/scip.set
+CBC = $(SOLVERS_DIR)/Cbc-2.10-linux-x86_64-gcc4.8/bin/cbc
+CBC_LIBRARY_PATH = $(SOLVERS_DIR)/Cbc-2.10-linux-x86_64-gcc4.8/lib
+#CBC = $(SOLVERS_DIR)/Cbc-2.9.8/build/Cbc/src/cbc
 CBC_SOLVE_OPTIONS = sec $(SOLVER_TIMEOUT)
 
 # Reporter arguments
@@ -147,7 +149,7 @@ $(SCIP_SOLUTION): $(CPLEX) Makefile \
 	rm -f $@
 	time -o $(SCIP_TIMING) $(SCIP) -f $< -l $@
 
-$(SCIP_REPORT): $(SCIP_SOLUTION) scip.set $(REPORTER_DEPS)
+$(SCIP_REPORT): $(SCIP_SOLUTION) $(SCIP_SET) $(REPORTER_DEPS)
 	$(REPORTER) scip $< $(REPORTER_ARGS) $(SCIP_TIMING) > $@
 	cat $@
 
@@ -160,7 +162,7 @@ cbc: $(CBC_REPORT)
 
 $(CBC_SOLUTION): $(CPLEX) Makefile \
     $(SOLVER_DEPS)
-	echo "limits/time = $(SOLVER_TIMEOUT)" > scip.set
+	echo "limits/time = $(SOLVER_TIMEOUT)" > $(SCIP_SET)
 	LD_LIBRARY_PATH=$(CBC_LIBRARY_PATH) time -o $(CBC_TIMING) \
 		 $(CBC) $< $(CBC_SOLVE_OPTIONS) solve solu $@
 
