@@ -57,7 +57,9 @@ REPORTS = $(GLPSOL_REPORT) $(SCIP_REPORT) $(CBC_REPORT)
 GLPSOL_INPUTS = --math $(GMPL) # --data $(GMPL_...)
 GLPSOL_SOLVE_OPTIONS = --tmlim $(SOLVER_TIMEOUT)
 SCIP = ./scip
-CBC = ./Cbc-2.9.8/build/Cbc/src/cbc
+CBC = ./Cbc-2.10-linux-x86_64-gcc4.8/bin/cbc
+CBC_LIBRARY_PATH = ./Cbc-2.10-linux-x86_64-gcc4.8/lib
+#CBC = ./Cbc-2.9.8/build/Cbc/src/cbc
 CBC_SOLVE_OPTIONS = sec $(SOLVER_TIMEOUT)
 
 # Reporter arguments
@@ -159,7 +161,7 @@ cbc: $(CBC_REPORT)
 $(CBC_SOLUTION): $(CPLEX) Makefile \
     $(SOLVER_DEPS)
 	echo "limits/time = $(SOLVER_TIMEOUT)" > scip.set
-	time -o $(CBC_TIMING) \
+	LD_LIBRARY_PATH=$(CBC_LIBRARY_PATH) time -o $(CBC_TIMING) \
 		 $(CBC) $< $(CBC_SOLVE_OPTIONS) solve solu $@
 
 $(CBC_REPORT): $(CBC_SOLUTION) $(REPORTER_DEPS)
