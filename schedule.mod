@@ -83,7 +83,7 @@ subject to track_length_start_end_constraint{track in TRACKS}:
 #
 # This is a cunning trick from:
 #
-#    FIXME
+#    https://math.stackexchange.com/questions/2446606/linear-programming-set-a-variable-the-max-between-two-another-variables
 #
 # The first two constraints are self-explanatory; however they only
 # set a lower bound for C, so the last two constraints are used to set
