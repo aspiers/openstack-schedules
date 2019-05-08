@@ -29,7 +29,8 @@ def main():
 
     if timings_path:
         with open(timings_path) as timings:
-            print(timings.readline()),
+            print()
+            print(timings.readline(), end='')
 
 
 if __name__ == '__main__':
