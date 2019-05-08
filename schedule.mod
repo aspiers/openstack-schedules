@@ -48,8 +48,9 @@ table tracks_csv IN "CSV" "data/tracks.csv":
 table conflicts_csv IN "CSV" "data/conflicts.csv":
     CONFLICTS <- [TRACK1, TRACK2];
 
-minimize satisfaction:
-    sum{(track1, track2) in CONFLICTS} overlap[track1, track2];
+minimize dissatisfaction:
+    sum{(track1, track2) in CONFLICTS} overlap[track1, track2]
+    + sum{track in TRACKS} 2 * slot_in_track[6, track];
 
 subject to track_start_constraint{track in TRACKS}:
     track_start[track] >= min_slot;
