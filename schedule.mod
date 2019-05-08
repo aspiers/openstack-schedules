@@ -20,6 +20,9 @@ set CONFLICTS dimen 2 within TRACKS cross TRACKS;
 var track_length{TRACKS};
 var track_start{TRACKS};
 var track_end{TRACKS};
+var track_starts_after_slot{TRACKS, SLOTS} binary;
+var track_ends_before_slot{TRACKS, SLOTS} binary;
+var slot_in_track{SLOTS, TRACKS} binary;
 param min_track_length{TRACKS};
 param max_track_length{TRACKS};
 
@@ -150,6 +153,46 @@ subject to overlap_constraint3{(track1, track2) in CONFLICTS}:
 subject to overlap_constraint4{(track1, track2) in CONFLICTS}:
     overlap[track1, track2] <=
         slot_range * (1 - overlap_bool[track1, track2]);
+
+# Ensure that when track_starts_after_slot is 1, track_start > slot
+# and when it's 0, the constraint is a no-op.
+subject to track_starts_after_slot_constraint{track in TRACKS, slot in SLOTS}:
+    track_start[track] >= slot + 1 - max_slot * (1 - track_starts_after_slot[track, slot]);
+
+# Ensure that when track_starts_after_slot is 0, track_start <= slot,
+# and when it's 1, the constraint is a no-op.
+subject to track_starts_on_before_slot_constraint{track in TRACKS, slot in SLOTS}:
+    track_start[track] <= slot + max_slot * track_starts_after_slot[track, slot];
+
+# Ensure that when track_ends_before_slot is 1, track_end < slot,
+# and when it's 0, the constraint is a no-op.
+subject to track_ends_before_slot_constraint{track in TRACKS, slot in SLOTS}:
+    track_end[track] <= slot - 1 + max_slot * (1 - track_ends_before_slot[track, slot]);
+
+# Ensure that when track_ends_before_slot is 0, track_end >= slot
+# and when it's 1, the constraint is a no-op.
+subject to track_ends_on_after_slot_constraint{track in TRACKS, slot in SLOTS}:
+    track_end[track] >= slot - max_slot * track_ends_before_slot[track, slot];
+
+# Take boolean AND of !track_starts_after_slot and
+# !track_ends_before_slot to set slot_in_track, using trick from:
+#
+# https://cs.stackexchange.com/questions/12102/express-boolean-logic-operations-in-zero-one-integer-linear-programming-ilp
+#
+# If either track_starts_after_slot / track_ends_before_slot are 1,
+# then slot_in_track must be 0.
+subject to slot_in_track_constraint_1{track in TRACKS, slot in SLOTS}:
+    slot_in_track[slot, track] <= (1 - track_starts_after_slot[track, slot]);
+
+subject to slot_in_track_constraint_2{track in TRACKS, slot in SLOTS}:
+    slot_in_track[slot, track] <= (1 - track_ends_before_slot[track, slot]);
+
+# If track_starts_after_slot and track_ends_before_slot are both 0,
+# then slot_in_track must be 1.
+subject to slot_in_track_constraint_3{track in TRACKS, slot in SLOTS}:
+    slot_in_track[slot, track] >=
+        1 - track_starts_after_slot[track, slot]
+          - track_ends_before_slot[track, slot];
 
 solve;
 
