@@ -3,7 +3,6 @@
 import re
 
 from openstack_schedules.utils import abort
-from openstack_schedules.track import Track
 from openstack_schedules.track_collection import TrackCollection
 
 

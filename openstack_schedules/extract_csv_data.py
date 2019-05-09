@@ -2,40 +2,8 @@
 
 import csv
 import sys
-import re
 
-def extract_track_data(csv_path):
-    tracks = {}
-    with open(csv_path, 'r') as csvfile:
-        csvreader = csv.DictReader(csvfile, delimiter=',', quotechar='"')
-        for required_field in ['TRACK', 'MIN_LENGTH', 'MAX_LENGTH', 'CONFLICTS']:
-            if required_field not in csvreader.fieldnames:
-                raise(RuntimeError("%s field missing from %s" %
-                                   (required_field, csv_path)))
-
-        for row in csvreader:
-            track_name = row['TRACK'].strip().replace('/', ' ')
-            conflicts = re.split(',\s*', row['CONFLICTS'].strip())
-            conflicts = list(filter(None, conflicts))
-            tracks[track_name] = {
-                'min': num_field(row['MIN_LENGTH']),
-                'max': num_field(row['MAX_LENGTH']),
-                'conflicts': conflicts
-            }
-
-    return tracks
-
-
-def num_field(val):
-    if val is None:
-        return None
-
-    val = val.strip()
-
-    if val == "":
-        return None
-
-    return int(val)
+from openstack_schedules.track_collection import TrackCollection
 
 
 def validate_conflict_tracks(tracks):
@@ -76,7 +44,7 @@ def write_conflicts_csv(tracks, out_file):
 
 
 def main():
-    tracks = extract_track_data(sys.argv[1])
+    tracks = TrackCollection.from_csv(sys.argv[1])
     validate_conflict_tracks(tracks)
     write_tracks_csv(tracks, sys.argv[2])
     write_conflicts_csv(tracks, sys.argv[3])
