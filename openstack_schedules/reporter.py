@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-class Reporter:
+
+class Reporter(object):
     def __init__(self, solution):
         self.solution = solution
 
@@ -32,7 +33,7 @@ class Reporter:
 
     def pic(self, track):
         return "".join([
-            #self.slot_pic(track, i)
+            # self.slot_pic(track, i)
             'X' if slot >= track.start and slot <= track.end
             else ' '
             for slot in range(1, 7)])

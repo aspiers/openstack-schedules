@@ -2,8 +2,8 @@
 
 import re
 
-from openstack_schedules.utils import abort
 from openstack_schedules.track_collection import TrackCollection
+from openstack_schedules.utils import abort
 
 
 class Solution(object):
@@ -57,9 +57,10 @@ class Solution(object):
                 self.end_track(track_name, int(slot))
                 continue
 
-            m = re.match("^\s*\d+\s+overlap\('?(.+?)'?,'?(.+?)'?\)\s+(\d+)", line)
+            m = re.match("^\s*\d+\s+overlap\('?(.+?)'?,'?(.+?)'?\)\s+(\d+)",
+                         line)
             if m:
-                track1_name,  track2_name, overlap = m.groups()
+                track1_name, track2_name, overlap = m.groups()
                 track1_name = self.cbc_name_to_human(track1_name)
                 track2_name = self.cbc_name_to_human(track2_name)
                 self.add_overlap(track1_name, track2_name, int(overlap))

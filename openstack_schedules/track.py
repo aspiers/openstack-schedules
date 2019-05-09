@@ -1,4 +1,7 @@
-class Track:
+#!/usr/bin/env python
+
+
+class Track(object):
     __slots__ = [
         "name",
         "min_length", "max_length",
@@ -15,7 +18,8 @@ class Track:
         return self.end - self.start + 1
 
     def add_overlap(self, other_track_name, num_slots):
-        '''Make sure not to call this multiple times with the same track.
-        '''
+        """Make sure not to call this multiple times with the same track.
+
+        """
         self.overlaps[other_track_name] = num_slots
         self.total_overlap += num_slots

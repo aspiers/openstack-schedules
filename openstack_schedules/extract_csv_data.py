@@ -13,7 +13,7 @@ def validate_conflict_tracks(tracks):
             if conflict not in tracks:
                 sys.stderr.write(
                     "WARNING: '%s' conflicts with non-existent track '%s'\n" %
-                      (track, conflict))
+                    (track, conflict))
                 errors += 1
 
     if errors:

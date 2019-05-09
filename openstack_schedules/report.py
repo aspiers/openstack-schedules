@@ -1,16 +1,10 @@
 #!/usr/bin/env python
 
-import re
 import sys
-from textwrap import dedent
 
-from openstack_schedules.solution import Solution
 from openstack_schedules.reporter import Reporter
+from openstack_schedules.solution import Solution
 from openstack_schedules.utils import abort
-
-
-def by_name_sorter(a, b):
-    return cmp(a, b)
 
 
 def main():
