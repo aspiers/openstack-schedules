@@ -1,13 +1,13 @@
 class Track:
     __slots__ = [
-        "track_name",
+        "name",
         "min_length", "max_length",
         "start", "end",
         "overlaps", "total_overlap"
     ]
 
-    def __init__(self, track_name):
-        self.track_name = track_name
+    def __init__(self, name):
+        self.name = name
         self.overlaps = {}
         self.total_overlap = 0
 
