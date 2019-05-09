@@ -21,8 +21,8 @@ class Solution(object):
     def end_track(self, track_name, slot):
         self.tracks[track_name].end = slot
 
-    def add_overlap(self, track1_name, track2_name, overlap):
-        self.tracks[track1_name].overlaps[track2_name] = overlap
+    def add_overlap(self, track1_name, track2_name, num_slots):
+        self.tracks[track1_name].add_overlap(track2_name, num_slots)
 
     def cbc_name_to_human(self, track_name):
         return track_name.replace('~', '-').replace('_', ' ')
