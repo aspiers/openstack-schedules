@@ -63,6 +63,7 @@ releasenotes/build
 report.txt
 partial.txt
 debug.txt
+data/generated/
 solutions/
 reports/
 solvers/

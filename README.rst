@@ -20,6 +20,8 @@ Installation
 
 * Make sure you have Python 3 on your ``$PATH``.
 
+* Type ``make prep``.
+
 Usage
 =====
 

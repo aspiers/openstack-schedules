@@ -3,6 +3,7 @@ set SLOTS;
 
 param slot_name{SLOTS} symbolic;
 
+# FIXME: don't hardcode this path
 table slots_csv IN "CSV" "data/slots.csv":
     SLOTS <- [POSITION],
     slot_name~NAME;
@@ -40,12 +41,14 @@ var overlap{CONFLICTS};      # Constrained to a minimum of 0
 # Temporary boolean for calculating non-negative overlap
 var overlap_bool{CONFLICTS} binary;
 
-table tracks_csv IN "CSV" "data/tracks.csv":
+# FIXME: don't hardcode this path
+table tracks_csv IN "CSV" "data/generated/tracks.csv":
     TRACKS <- [TRACK],
     min_track_length~MIN_LENGTH,
     max_track_length~MAX_LENGTH;
 
-table conflicts_csv IN "CSV" "data/conflicts.csv":
+# FIXME: don't hardcode this path
+table conflicts_csv IN "CSV" "data/generated/conflicts.csv":
     CONFLICTS <- [TRACK1, TRACK2];
 
 minimize dissatisfaction:
