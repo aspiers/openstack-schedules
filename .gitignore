@@ -70,3 +70,4 @@ timings/
 output/
 .dir-exists
 schedule-cplex.lp
+/.python-version
