@@ -192,6 +192,11 @@ subject to slot_in_track_constraint{track in TRACKS, slot in SLOTS}:
 
 solve;
 
+# N.B. The following reporting code is only run when solving with
+# glpsol, and even then we don't actually need it; it's just kept for
+# illustration purposes.  For the other solvers, the model is compiled
+# by glpsol into CPLEX format, during which this code is discarded.
+
 printf "\n\n=================================================\n\n";
 
 printf "Slots range %d from %d to %d\n\n", slot_range, min_slot, max_slot;
