@@ -5,7 +5,7 @@ class Reporter:
         self.solution = solution
 
     def report(self):
-        print("Report for solver: %s" % self.solution.solver)
+        print("Report for solver: %s\n" % self.solution.solver)
 
         self.report_summary()
         self.report_conflicts()
